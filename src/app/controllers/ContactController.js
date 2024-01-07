@@ -2,14 +2,14 @@ const ContactRepository = require('../repositories/ContactRepository');
 
 class ContactController {
   async index(request, response) {
-    const contacts = await ContactRepository.findAll();
-
+    let { order } = request.query;
+    order = order ? order.toUpperCase() : '';
+    const contacts = await ContactRepository.findAll(order);
     response.json(contacts);
   }
 
   async show(request, response) {
     const { id } = request.params;
-    console.log(id, 'aiddddddddd');
     const contact = await ContactRepository.findById(id);
 
     if (!contact) {
