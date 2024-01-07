@@ -9,7 +9,7 @@ class ContactController {
 
   async show(request, response) {
     const { id } = request.params;
-
+    console.log(id, 'aiddddddddd');
     const contact = await ContactRepository.findById(id);
 
     if (!contact) {
@@ -31,7 +31,7 @@ class ContactController {
     const contactExists = await ContactRepository.findByEmail(email);
 
     if (contactExists) {
-      return response.status(400).json({ error: 'Email is already been taken' });
+      return response.status(400).json({ error: 'Email is already in use' });
     }
 
     const contact = await ContactRepository.create({
@@ -58,7 +58,7 @@ class ContactController {
 
     const contactByEmail = await ContactRepository.findByEmail(email);
     if (contactByEmail && contactByEmail.id !== id) {
-      return response.status(400).json({ error: 'Email is already been taken' });
+      return response.status(400).json({ error: 'Email is already in use' });
     }
 
     const contact = await ContactRepository.update(id, {
