@@ -13,4 +13,4 @@ app.use((error, requiest, response, next) => {
   response.sendStatus(500);
 });
 
-app.listen(3000, () => console.log('Server started at http://localhos:3000'));
+app.listen(3000, () => console.log('Server started at http://localhost:3000'));
